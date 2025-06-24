@@ -1,0 +1,276 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sakura-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.petal {
+    position: absolute;
+    background-color: rgba(221, 160, 221, 0.7);
+    border-radius: 150% 0 150% 0;
+    animation: falling linear infinite;
+}
+
+.message-container {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 500px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    box-shadow: 0 10px 35px rgba(31, 38, 135, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+    overflow: hidden;
+}
+
+.message-content {
+    color: #4a224a;
+    opacity: 0;
+    animation: contentFadeIn 2s ease-in-out forwards;
+    animation-delay: 0.5s;
+}
+
+h1.greeting {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.2rem;
+    margin-bottom: 15px;
+    color: #6a0dad;
+    text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.7);
+}
+
+p.message {
+    margin-bottom: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+p.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.7rem;
+    margin-top: 20px;
+    color: #6a0dad;
+}
+
+.gif-container {
+    margin: 15px auto;
+    max-width: 200px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.gif-container:hover {
+    transform: scale(1);
+}
+
+.gif-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.cute-button {
+    background: rgba(138, 43, 226, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;  /* This centers the single button */
+}
+
+.cute-button:hover {
+    background: rgba(147, 112, 219, 0.9);
+    transform: translateY(-3px);
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.15);
+}
+
+.cute-button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cute-button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.7);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.cute-button:hover::after {
+    animation: ripple 1s ease-out;
+}
+
+.heart-icon {
+    display: inline-block;
+    color: #ff6b6b;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.cute-button:hover .heart-icon {
+    transform: scale(1.5);
+}
+
+.message-card {
+    display: none;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    animation: bounceIn 0.6s;
+}
+
+@keyframes falling {
+    0% {
+        transform: translate(0, -10px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(100px, calc(100vh + 10px)) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes contentFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    20% {
+        transform: scale(25);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40);
+    }
+}
+
+/* Added sparkles animation */
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: white;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 3;
+}
+
+@keyframes sparkle {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    h1.greeting {
+        font-size: 2.5rem;
+    }
+    
+    p.message {
+        font-size: 1rem;
+    }
+}
